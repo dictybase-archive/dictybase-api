@@ -1,0 +1,1615 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "user.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/permissions": {
+      "get": {
+        "summary": "List all permissions",
+        "operationId": "ListPermissions",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userPermissionCollection"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "include",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PermissionService"
+        ]
+      },
+      "post": {
+        "summary": "Create an permission",
+        "operationId": "CreatePermission",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userPermission"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userCreatePermissionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PermissionService"
+        ]
+      }
+    },
+    "/permissions/{id}": {
+      "get": {
+        "summary": "Gets the specified permission",
+        "operationId": "GetPermission",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userPermission"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "include",
+            "description": "include query parameter, here only \"roles\" relationship resource is allowed.\nFor example, \"/users/34?include=roles.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "description": "fields query parameter, here all the user attributes in any\ncombination(comma separated) is allowed.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PermissionService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete an permission",
+        "operationId": "DeletePermission",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PermissionService"
+        ]
+      },
+      "patch": {
+        "summary": "Update an permission",
+        "operationId": "UpdatePermission",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userPermission"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userUpdatePermissionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PermissionService"
+        ]
+      }
+    },
+    "/roles": {
+      "get": {
+        "summary": "List all roles",
+        "operationId": "ListRoles",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userRoleCollection"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "include",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      },
+      "post": {
+        "summary": "Create an role",
+        "operationId": "CreateRole",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userRole"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userCreateRoleRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      }
+    },
+    "/roles/{id}": {
+      "get": {
+        "summary": "Gets the specified role",
+        "operationId": "GetRole",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userRole"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "include",
+            "description": "include query parameter, here only \"roles\" relationship resource is allowed.\nFor example, \"/users/34?include=roles.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "description": "fields query parameter, here all the user attributes in any\ncombination(comma separated) is allowed.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete an role",
+        "operationId": "DeleteRole",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      },
+      "patch": {
+        "summary": "Update an role",
+        "operationId": "UpdateRole",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userRole"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userUpdateRoleRequest"
+            }
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      }
+    },
+    "/roles/{id}/permissions": {
+      "get": {
+        "summary": "Gets all related permissions",
+        "operationId": "GetRelatedPermissions",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userPermissionCollection"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      }
+    },
+    "/roles/{id}/permissions/permissions": {
+      "post": {
+        "operationId": "CreatePermissionRelationship",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jsonapiDataCollection"
+            }
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      }
+    },
+    "/roles/{id}/relationships/permissions": {
+      "delete": {
+        "operationId": "DeletePermissionRelationship",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jsonapiDataCollection"
+            }
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      },
+      "patch": {
+        "operationId": "UpdatePermissionRelationship",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jsonapiDataCollection"
+            }
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      }
+    },
+    "/roles/{id}/relationships/users": {
+      "delete": {
+        "operationId": "DeleteUserRelationship",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jsonapiDataCollection"
+            }
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateUserRelationship",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jsonapiDataCollection"
+            }
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      },
+      "patch": {
+        "operationId": "UpdateUserRelationship",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jsonapiDataCollection"
+            }
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      }
+    },
+    "/roles/{id}/users": {
+      "get": {
+        "summary": "Gets all related users",
+        "operationId": "GetRelatedUsers",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userUserCollection"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "pagenum",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "pagesize",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "RoleService"
+        ]
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "List all users",
+        "operationId": "ListUsers",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userUserCollection"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "include",
+            "description": "Identical as `GetRequest`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "description": "Identical as `GetRequest`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagenum",
+            "description": "The page number to fetch.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "pagesize",
+            "description": "Number of records per page.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "filter",
+            "description": "The `filter` query parameter restricts the data return by the\ncollection. To use it, supply an attribute to filter, followed by a\nfilter expression. It uses the following syntax...\n       attribute operator expression\nattribute - Any one of the valid attribute of the resource.\noperator - Defines the type of filter match to use. It could be any of\nthe following four and all of them should be URL-encoded.\n\n             ==  Equals (URL encoding is %3D%3D)\n             !=  Not equals\n             =@  Contains substring\n             !@  Not contains substring\n\nexpression - The value that will be included or excluded from the\nresult. URL-reserved characters must be URL-encoded.\nFor example, the following filter returns all users with last name `Gag`.\n          /users?filter=last_name%3D%3Dgag\n\nFilter can be combined using OR or AND boolean logic.\n  * The OR is represented using a comma(,).\n  * The AND is represented using a semi-colon(;).\n  * AND and OR operators can be combined and AND takes precedence over OR.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      },
+      "post": {
+        "summary": "Create an user",
+        "operationId": "CreateUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userUser"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userCreateUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "Gets the specified user",
+        "operationId": "GetUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userUser"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "include",
+            "description": "include query parameter, here only \"roles\" relationship resource is allowed.\nFor example, \"/users/34?include=roles.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "description": "fields query parameter, here all the user attributes in any\ncombination(comma separated) is allowed.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete an user",
+        "operationId": "DeleteUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      },
+      "patch": {
+        "summary": "Update an user",
+        "operationId": "UpdateUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userUser"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userUpdateUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/users/{id}/relationships/roles": {
+      "delete": {
+        "summary": "Delete relationship links with roles",
+        "operationId": "DeleteRoleRelationship",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jsonapiDataCollection"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      },
+      "post": {
+        "summary": "Create relationship links with roles",
+        "operationId": "CreateRoleRelationship",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jsonapiDataCollection"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      },
+      "patch": {
+        "summary": "Update relationship links with roles",
+        "operationId": "UpdateRoleRelationship",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jsonapiDataCollection"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/users/{id}/roles": {
+      "get": {
+        "summary": "Gets all related roles",
+        "operationId": "GetRelatedRoles",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userRoleCollection"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apijsonapiData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The resource name."
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Unique id."
+        }
+      },
+      "description": "A [resource identifier object](http://jsonapi.org/format/#document-resource-identifier-objects)."
+    },
+    "jsonapiDataCollection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apijsonapiData"
+          }
+        }
+      },
+      "description": "Definition for resource identifier collection objects."
+    },
+    "jsonapiLinks": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "string",
+          "description": "A http link. It points to the resource itself."
+        },
+        "related": {
+          "type": "string",
+          "description": "A http link. It points to a related resource."
+        }
+      },
+      "description": "A container for http links."
+    },
+    "jsonapiMeta": {
+      "type": "object",
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/jsonapiPagination"
+        }
+      },
+      "description": "Top level meta container."
+    },
+    "jsonapiPagination": {
+      "type": "object",
+      "properties": {
+        "records": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of entries, regardless of pages."
+        },
+        "total": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of pages."
+        },
+        "size": {
+          "type": "string",
+          "format": "int64",
+          "description": "Number of entries per page."
+        },
+        "number": {
+          "type": "string",
+          "format": "int64",
+          "description": "Current page number."
+        }
+      },
+      "title": "A container for various pagination properties"
+    },
+    "jsonapiPaginationLinks": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "string",
+          "description": "A http link to the resource itself."
+        },
+        "next": {
+          "type": "string",
+          "description": "A http link to the next page of data."
+        },
+        "prev": {
+          "type": "string",
+          "description": "A http link to the previous page of data."
+        },
+        "last": {
+          "type": "string",
+          "description": "A http link to the last page of data."
+        },
+        "first": {
+          "type": "string",
+          "description": "A http link to the first page of data."
+        }
+      },
+      "description": "A container for pagination links."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name whose content describes the type of the\nserialized protocol buffer message.\n\nFor URLs which use the scheme `http`, `https`, or no scheme, the\nfollowing restrictions and interpretations apply:\n\n* If no scheme is provided, `https` is assumed.\n* The last segment of the URL's path must represent the fully\n  qualified name of the type (as in `path/google.protobuf.Duration`).\n  The name should be in a canonical form (e.g., leading \".\" is\n  not accepted).\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := \u0026pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "protobufEmpty": {
+      "type": "object",
+      "description": "service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "title": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:"
+    },
+    "protobufFieldMask": {
+      "type": "object",
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The set of field mask paths."
+        }
+      },
+      "description": "paths: \"f.a\"\n    paths: \"f.b.d\"\n\nHere `f` represents a field in some root message, `a` and `b`\nfields in the message found in `f`, and `d` a field found in the\nmessage in `f.b`.\n\nField masks are used to specify a subset of fields that should be\nreturned by a get operation or modified by an update operation.\nField masks also have a custom JSON encoding (see below).\n\n# Field Masks in Projections\n\nWhen used in the context of a projection, a response message or\nsub-message is filtered by the API to only contain those fields as\nspecified in the mask. For example, if the mask in the previous\nexample is applied to a response message as follows:\n\n    f {\n      a : 22\n      b {\n        d : 1\n        x : 2\n      }\n      y : 13\n    }\n    z: 8\n\nThe result will not contain specific values for fields x,y and z\n(their value will be set to the default, and omitted in proto text\noutput):\n\n\n    f {\n      a : 22\n      b {\n        d : 1\n      }\n    }\n\nA repeated field is not allowed except at the last position of a\npaths string.\n\nIf a FieldMask object is not present in a get operation, the\noperation applies to all fields (as if a FieldMask of all fields\nhad been specified).\n\nNote that a field mask does not necessarily apply to the\ntop-level response message. In case of a REST get operation, the\nfield mask applies directly to the response, but in case of a REST\nlist operation, the mask instead applies to each individual message\nin the returned resource list. In case of a REST custom method,\nother definitions may be used. Where the mask applies will be\nclearly documented together with its declaration in the API.  In\nany case, the effect on the returned resource/resources is required\nbehavior for APIs.\n\n# Field Masks in Update Operations\n\nA field mask in update operations specifies which fields of the\ntargeted resource are going to be updated. The API is required\nto only change the values of the fields as specified in the mask\nand leave the others untouched. If a resource is passed in to\ndescribe the updated values, the API ignores the values of all\nfields not covered by the mask.\n\nIf a repeated field is specified for an update operation, the existing\nrepeated values in the target resource will be overwritten by the new values.\nNote that a repeated field is only allowed in the last position of a `paths`\nstring.\n\nIf a sub-message is specified in the last position of the field mask for an\nupdate operation, then the existing sub-message in the target resource is\noverwritten. Given the target message:\n\n    f {\n      b {\n        d : 1\n        x : 2\n      }\n      c : 1\n    }\n\nAnd an update message:\n\n    f {\n      b {\n        d : 10\n      }\n    }\n\nthen if the field mask is:\n\n paths: \"f.b\"\n\nthen the result will be:\n\n    f {\n      b {\n        d : 10\n      }\n      c : 1\n    }\n\nHowever, if the update mask was:\n\n paths: \"f.b.d\"\n\nthen the result would be:\n\n    f {\n      b {\n        d : 10\n        x : 2\n      }\n      c : 1\n    }\n\nIn order to reset a field's value to the default, the field must\nbe in the mask and set to the default value in the provided resource.\nHence, in order to reset all fields of a resource, provide a default\ninstance of the resource and set all fields in the mask, or do\nnot provide a mask as described below.\n\nIf a field mask is not present on update, the operation applies to\nall fields (as if a field mask of all fields has been specified).\nNote that in the presence of schema evolution, this may mean that\nfields the client does not know and has therefore not filled into\nthe request will be reset to their default. If this is unwanted\nbehavior, a specific service may require a client to always specify\na field mask, producing an error if not.\n\nAs with get operations, the location of the resource which\ndescribes the updated values in the request message depends on the\noperation kind. In any case, the effect of the field mask is\nrequired to be honored by the API.\n\n## Considerations for HTTP REST\n\nThe HTTP kind of an update operation which uses a field mask must\nbe set to PATCH instead of PUT in order to satisfy HTTP semantics\n(PUT must only be used for full updates).\n\n# JSON Encoding of Field Masks\n\nIn JSON, a field mask is encoded as a single string where paths are\nseparated by a comma. Fields name in each path are converted\nto/from lower-camel naming conventions.\n\nAs an example, consider the following message declarations:\n\n    message Profile {\n      User user = 1;\n      Photo photo = 2;\n    }\n    message User {\n      string display_name = 1;\n      string address = 2;\n    }\n\nIn proto a field mask for `Profile` may look as such:\n\n    mask {\n      paths: \"user.display_name\"\n      paths: \"photo\"\n    }\n\nIn JSON, the same mask is represented as below:\n\n    {\n      mask: \"user.displayName,photo\"\n    }\n\n# Field Masks and Oneof Fields\n\nField masks treat fields in oneofs just as regular fields. Consider the\nfollowing message:\n\n    message SampleMessage {\n      oneof test_oneof {\n        string name = 4;\n        SubMessage sub_message = 9;\n      }\n    }\n\nThe field mask can be:\n\n    mask {\n      paths: \"name\"\n    }\n\nOr:\n\n    mask {\n      paths: \"sub_message\"\n    }\n\nNote that oneof type names (\"test_oneof\" in this case) cannot be used in\npaths.",
+      "title": "`FieldMask` represents a set of symbolic field paths, for example:"
+    },
+    "userCreatePermissionRequest": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/userCreatePermissionRequestData"
+        }
+      }
+    },
+    "userCreatePermissionRequestData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "attributes": {
+          "$ref": "#/definitions/userPermissionAttributes"
+        }
+      },
+      "title": "The payload for new user"
+    },
+    "userCreateRoleRequest": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/userCreateRoleRequestData"
+        }
+      }
+    },
+    "userCreateRoleRequestData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "attributes": {
+          "$ref": "#/definitions/userRoleAttributes"
+        },
+        "relationships": {
+          "$ref": "#/definitions/userNewRoleRelationships"
+        }
+      },
+      "title": "The payload for new role"
+    },
+    "userCreateUserRequest": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/userCreateUserRequestData"
+        }
+      }
+    },
+    "userCreateUserRequestData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "attributes": {
+          "$ref": "#/definitions/userUserAttributes"
+        },
+        "relationships": {
+          "$ref": "#/definitions/userNewUserRelationships"
+        }
+      },
+      "title": "The payload for new user"
+    },
+    "userExistingRoleRelationships": {
+      "type": "object",
+      "properties": {
+        "permissions": {
+          "$ref": "#/definitions/userExistingRoleRelationshipsPermissions"
+        },
+        "users": {
+          "$ref": "#/definitions/userExistingRoleRelationshipsUsers"
+        }
+      },
+      "description": "The relationship definition for existing roles."
+    },
+    "userExistingRoleRelationshipsPermissions": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apijsonapiData"
+          }
+        }
+      },
+      "description": "Relationships with permission definition."
+    },
+    "userExistingRoleRelationshipsUsers": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apijsonapiData"
+          }
+        }
+      },
+      "description": "Relationships with user definition."
+    },
+    "userExistingUserRelationships": {
+      "type": "object",
+      "properties": {
+        "roles": {
+          "$ref": "#/definitions/userExistingUserRelationshipsRoles"
+        }
+      },
+      "description": "The relationship definition for existing users."
+    },
+    "userExistingUserRelationshipsRoles": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks",
+          "description": "Http links with role resource."
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apijsonapiData"
+          },
+          "description": "A role [resource identifier object](http://jsonapi.org/format/#document-resource-identifier-objects)."
+        }
+      },
+      "description": "Relationships with role resource."
+    },
+    "userNewRoleRelationships": {
+      "type": "object",
+      "properties": {
+        "permissions": {
+          "$ref": "#/definitions/userNewRoleRelationshipsPermissions"
+        },
+        "users": {
+          "$ref": "#/definitions/userNewRoleRelationshipsUsers"
+        }
+      },
+      "description": "The relationship definition for creating new roles."
+    },
+    "userNewRoleRelationshipsPermissions": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apijsonapiData"
+          }
+        }
+      }
+    },
+    "userNewRoleRelationshipsUsers": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apijsonapiData"
+          }
+        }
+      }
+    },
+    "userNewUserRelationships": {
+      "type": "object",
+      "properties": {
+        "roles": {
+          "$ref": "#/definitions/userNewUserRelationshipsRoles"
+        }
+      },
+      "description": "The relationship definition for creating new users."
+    },
+    "userNewUserRelationshipsRoles": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apijsonapiData"
+          },
+          "description": "A role [resource identifier object](http://jsonapi.org/format/#document-resource-identifier-objects)."
+        }
+      },
+      "description": "Relationships with role resource."
+    },
+    "userPermission": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/userPermissionData"
+        },
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        }
+      },
+      "description": "A resource for managing user permission."
+    },
+    "userPermissionAttributes": {
+      "type": "object",
+      "properties": {
+        "permission": {
+          "type": "string",
+          "description": "Kind of permission."
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of the type of permission."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Timestamp for creation and update"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "A container for permission fields."
+    },
+    "userPermissionCollection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userPermissionData"
+          }
+        },
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        }
+      },
+      "description": "A permission collection resource."
+    },
+    "userPermissionData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The resource name."
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Unique id."
+        },
+        "attributes": {
+          "$ref": "#/definitions/userPermissionAttributes"
+        },
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        }
+      },
+      "description": "A top level container for permission data."
+    },
+    "userRole": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/userRoleData"
+        },
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        },
+        "included": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      },
+      "description": "A definition for managing user roles."
+    },
+    "userRoleAttributes": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Timestamp for creation and update"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "A container for role fields."
+    },
+    "userRoleCollection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userRoleData"
+          }
+        },
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        },
+        "included": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      },
+      "description": "A role collection definition."
+    },
+    "userRoleData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "attributes": {
+          "$ref": "#/definitions/userRoleAttributes"
+        },
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        },
+        "relationships": {
+          "$ref": "#/definitions/userExistingRoleRelationships"
+        }
+      },
+      "description": "A top level container for role data."
+    },
+    "userUpdatePermissionRequest": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/userUpdatePermissionRequestData"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "Unique id, required"
+        },
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "description": "An optional mask specifying which fields to update.\nPresence of this field allow partial updates."
+        }
+      }
+    },
+    "userUpdatePermissionRequestData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "attributes": {
+          "$ref": "#/definitions/userPermissionAttributes"
+        }
+      }
+    },
+    "userUpdateRoleRequest": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/userUpdateRoleRequestData"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "Unique id, required"
+        },
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "description": "An optional mask specifying which fields to update.\nPresence of this field allow partial updates."
+        }
+      }
+    },
+    "userUpdateRoleRequestData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "attributes": {
+          "$ref": "#/definitions/userRoleAttributes"
+        },
+        "relationships": {
+          "$ref": "#/definitions/userExistingRoleRelationships"
+        }
+      }
+    },
+    "userUpdateUserRequest": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/userUpdateUserRequestData"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "Unique id, required"
+        },
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "description": "An optional mask specifying which fields to update.\nPresence of this field allow partial updates."
+        }
+      }
+    },
+    "userUpdateUserRequestData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "attributes": {
+          "$ref": "#/definitions/userUserAttributes"
+        },
+        "relationships": {
+          "$ref": "#/definitions/userNewUserRelationships"
+        }
+      }
+    },
+    "userUser": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/userUserData"
+        },
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        },
+        "included": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      },
+      "description": "A user resource."
+    },
+    "userUserAttributes": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "description": "First name."
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Last name."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email."
+        },
+        "organization": {
+          "type": "string",
+          "description": "Organization in which the user belong."
+        },
+        "group_name": {
+          "type": "string",
+          "description": "Group in which the user belong."
+        },
+        "first_address": {
+          "type": "string",
+          "description": "Address."
+        },
+        "second_address": {
+          "type": "string",
+          "description": "More address."
+        },
+        "city": {
+          "type": "string",
+          "description": "City."
+        },
+        "state": {
+          "type": "string",
+          "description": "State."
+        },
+        "zipcode": {
+          "type": "string",
+          "description": "Zipcode."
+        },
+        "country": {
+          "type": "string",
+          "description": "Country."
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone no."
+        },
+        "is_active": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Current status of user."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Timestamp for creation and update"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "A container for user fields."
+    },
+    "userUserCollection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/userUserData"
+          }
+        },
+        "links": {
+          "$ref": "#/definitions/jsonapiPaginationLinks"
+        },
+        "meta": {
+          "$ref": "#/definitions/jsonapiMeta"
+        },
+        "included": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      },
+      "description": "A user collection resource."
+    },
+    "userUserData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The resource name."
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Unique id."
+        },
+        "attributes": {
+          "$ref": "#/definitions/userUserAttributes"
+        },
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        },
+        "relationships": {
+          "$ref": "#/definitions/userExistingUserRelationships"
+        }
+      },
+      "description": "A top level container for user data."
+    }
+  }
+}
