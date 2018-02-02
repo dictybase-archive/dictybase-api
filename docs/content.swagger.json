@@ -42,9 +42,10 @@
         ]
       }
     },
-    "/contents/{id}": {
+    "/contents/slug/{slug}": {
       "get": {
-        "operationId": "GetContentById",
+        "summary": "Gets the content of specified page(slug)",
+        "operationId": "GetContentBySlug",
         "responses": {
           "200": {
             "description": "",
@@ -55,65 +56,10 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "slug",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ContentService"
-        ]
-      },
-      "delete": {
-        "operationId": "DeleteContentById",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/protobufEmpty"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ContentService"
-        ]
-      },
-      "patch": {
-        "operationId": "UpdateContentById",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/contentContent"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/contentUpdateContentIdRequest"
-            }
+            "type": "string"
           }
         ],
         "tags": [
@@ -121,9 +67,8 @@
         ]
       }
     },
-    "/contents/{slug}": {
+    "/contents/{id}": {
       "get": {
-        "summary": "Gets the content of specified page(slug)\nLook here https://en.wikipedia.org/wiki/Semantic_URL#Slug to know about slug",
         "operationId": "GetContent",
         "responses": {
           "200": {
@@ -135,10 +80,11 @@
         },
         "parameters": [
           {
-            "name": "slug",
+            "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -146,7 +92,7 @@
         ]
       },
       "delete": {
-        "summary": "Delete an existing page(slug) along with its content",
+        "summary": "Delete an existing page along with its content",
         "operationId": "DeleteContent",
         "responses": {
           "200": {
@@ -158,10 +104,11 @@
         },
         "parameters": [
           {
-            "name": "slug",
+            "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -169,7 +116,7 @@
         ]
       },
       "patch": {
-        "summary": "Update the content of an existing page(slug)",
+        "summary": "Update the content of an existing page",
         "operationId": "UpdateContent",
         "responses": {
           "200": {
@@ -181,10 +128,11 @@
         },
         "parameters": [
           {
-            "name": "slug",
+            "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           },
           {
             "name": "body",
@@ -202,29 +150,6 @@
     }
   },
   "definitions": {
-    "DataNewContentAttributes": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "page name"
-        },
-        "created_by": {
-          "type": "string",
-          "format": "int64",
-          "description": "user id who is creating this content\nThe existence of user will be verified(not implemented yet) \nusing the `user` microservice backend."
-        },
-        "content": {
-          "type": "string",
-          "description": "page content, expected to be serialized `JSON` string."
-        },
-        "namespace": {
-          "type": "string",
-          "description": "namespace for the page, it is prepended to the\nname to generate an unique slug."
-        }
-      },
-      "title": "Definition for fields that are needed for storing the content"
-    },
     "contentContent": {
       "type": "object",
       "properties": {
@@ -245,7 +170,7 @@
         },
         "slug": {
           "type": "string",
-          "title": "page slug"
+          "title": "page slug. Look here https://en.wikipedia.org/wiki/Semantic_URL#Slug to know about slug"
         },
         "created_by": {
           "type": "string",
@@ -268,7 +193,7 @@
         },
         "content": {
           "type": "string",
-          "title": "serialized page content"
+          "title": "serialized page content(for example serialized draft js object)"
         },
         "namespace": {
           "type": "string",
@@ -300,25 +225,40 @@
     "contentExistingContentAttributes": {
       "type": "object",
       "properties": {
+        "updated_by": {
+          "type": "string",
+          "format": "int64",
+          "description": "user id who is updating this content\nThe existence of user will be verified(not implemented yet)\nusing the `user` microservice backend."
+        },
+        "content": {
+          "type": "string",
+          "title": "serialized page content(for example serialized draft js object)"
+        }
+      },
+      "title": "Fields that can be updated\nChanging either or both of name and namespace\nattributes alter the slug for the page"
+    },
+    "contentNewContentAttributes": {
+      "type": "object",
+      "properties": {
         "name": {
           "type": "string",
           "title": "page name"
         },
-        "updated_by": {
+        "created_by": {
           "type": "string",
           "format": "int64",
-          "description": "user id who is updating this content\nThe existence of user will be verified(not implemented yet) \nusing the `user` microservice backend."
+          "description": "user id who is creating this content\nThe existence of user will be verified(not implemented yet) \nusing the `user` microservice backend."
         },
         "content": {
           "type": "string",
-          "title": "content"
+          "description": "page content, expected to be serialized `JSON` string."
         },
         "namespace": {
           "type": "string",
-          "title": "namespace"
+          "description": "namespace for the page, it is prepended to the\nname to generate an unique slug."
         }
       },
-      "title": "Fields that can be updated\nChanging either or both of name and namespace\nattributes alter the slug for the page"
+      "title": "Definition for fields that are needed for storing the content"
     },
     "contentStoreContentRequest": {
       "type": "object",
@@ -337,15 +277,15 @@
           "title": "resource name"
         },
         "attributes": {
-          "$ref": "#/definitions/DataNewContentAttributes"
+          "$ref": "#/definitions/contentNewContentAttributes"
         }
       }
     },
-    "contentUpdateContentIdRequest": {
+    "contentUpdateContentRequest": {
       "type": "object",
       "properties": {
         "data": {
-          "$ref": "#/definitions/contentUpdateContentIdRequestData"
+          "$ref": "#/definitions/contentUpdateContentRequestData"
         },
         "id": {
           "type": "string",
@@ -356,39 +296,6 @@
           "description": "An optional mask specifying which fields to update.\nPresence of this field allow partial updates."
         }
       }
-    },
-    "contentUpdateContentIdRequestData": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "title": "resource name"
-        },
-        "id": {
-          "type": "string",
-          "format": "int64",
-          "title": "unique id"
-        },
-        "attributes": {
-          "$ref": "#/definitions/contentExistingContentAttributes"
-        }
-      }
-    },
-    "contentUpdateContentRequest": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/contentUpdateContentRequestData"
-        },
-        "slug": {
-          "type": "string"
-        },
-        "update_mask": {
-          "$ref": "#/definitions/protobufFieldMask",
-          "description": "An optional mask specifying which fields to update.\nPresence of this field allow partial updates."
-        }
-      },
-      "title": "Definition for updating any existing content"
     },
     "contentUpdateContentRequestData": {
       "type": "object",
