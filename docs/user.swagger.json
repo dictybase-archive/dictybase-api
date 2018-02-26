@@ -98,15 +98,8 @@
             "format": "int64"
           },
           {
-            "name": "include",
-            "description": "include query parameter, here only \"roles\" relationship resource is allowed.\nFor example, \"/users/34?include=roles.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "fields",
-            "description": "fields query parameter, here all the user attributes in any\ncombination(comma separated) is allowed.",
+            "description": "fields query parameter to retrieve any particular or any particular\ncombination of attributes. Multiple fields values are delimited by comma(,).\n\nFor example \n/{resource_name}/29?fields=foo\n/{resource_name}/?fields=foo,bar",
             "in": "query",
             "required": false,
             "type": "string"
@@ -257,14 +250,14 @@
           },
           {
             "name": "include",
-            "description": "include query parameter, here only \"roles\" relationship resource is allowed.\nFor example, \"/users/34?include=roles.",
+            "description": "include query parameter to retrieve any particular or particular\ncombination of relationships. Multiple include values are delimited by\ncomma(,).\n\nFor example, \n/{resource_name}/13?include=baz\n/{resource_name}/13?include=baz,bot",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "fields",
-            "description": "fields query parameter, here all the user attributes in any\ncombination(comma separated) is allowed.",
+            "description": "fields query parameter to retrieve any particular or any particular\ncombination of attributes. Multiple fields values are delimited by comma(,).\n\nFor example \n/{resource_name}/29?fields=foo\n/{resource_name}/?fields=foo,bar",
             "in": "query",
             "required": false,
             "type": "string"
@@ -692,14 +685,14 @@
           },
           {
             "name": "include",
-            "description": "include query parameter, here only \"roles\" relationship resource is allowed.\nFor example, \"/users/34?include=roles.",
+            "description": "include query parameter to retrieve any particular or particular\ncombination of relationships. Multiple include values are delimited by\ncomma(,).\n\nFor example, \n/{resource_name}/13?include=baz\n/{resource_name}/13?include=baz,bot",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "fields",
-            "description": "fields query parameter, here all the user attributes in any\ncombination(comma separated) is allowed.",
+            "description": "fields query parameter to retrieve any particular or any particular\ncombination of attributes. Multiple fields values are delimited by comma(,).\n\nFor example \n/{resource_name}/29?fields=foo\n/{resource_name}/?fields=foo,bar",
             "in": "query",
             "required": false,
             "type": "string"
