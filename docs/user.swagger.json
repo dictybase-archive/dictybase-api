@@ -171,7 +171,7 @@
     },
     "/roles": {
       "get": {
-        "summary": "List all roles",
+        "summary": "List all roles. Both *users* and *permissions* relationships are allowed in the include parameter.",
         "operationId": "ListRoles",
         "responses": {
           "200": {
@@ -358,6 +358,7 @@
     },
     "/roles/{id}/permissions/permissions": {
       "post": {
+        "summary": "Create permission relationship with role",
         "operationId": "CreatePermissionRelationship",
         "responses": {
           "200": {
@@ -391,6 +392,7 @@
     },
     "/roles/{id}/relationships/permissions": {
       "delete": {
+        "summary": "Delete existing permission relationship with role",
         "operationId": "DeletePermissionRelationship",
         "responses": {
           "200": {
@@ -422,6 +424,7 @@
         ]
       },
       "patch": {
+        "summary": "Update existing permission relationship with role",
         "operationId": "UpdatePermissionRelationship",
         "responses": {
           "200": {
@@ -455,6 +458,7 @@
     },
     "/roles/{id}/relationships/users": {
       "delete": {
+        "summary": "Delete existing user relationship with role",
         "operationId": "DeleteUserRelationship",
         "responses": {
           "200": {
@@ -486,6 +490,7 @@
         ]
       },
       "post": {
+        "summary": "Create user relationship with role",
         "operationId": "CreateUserRelationship",
         "responses": {
           "200": {
@@ -517,6 +522,7 @@
         ]
       },
       "patch": {
+        "summary": "Update existing user relationship with role",
         "operationId": "UpdateUserRelationship",
         "responses": {
           "200": {
@@ -590,7 +596,7 @@
     },
     "/users": {
       "get": {
-        "summary": "List all users",
+        "summary": "List all users. Only *roles* relationship is allowed for inclusion.",
         "operationId": "ListUsers",
         "responses": {
           "200": {
