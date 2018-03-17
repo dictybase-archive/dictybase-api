@@ -256,14 +256,14 @@
           },
           {
             "name": "include",
-            "description": "include query parameter to retrieve any particular or particular\ncombination of relationships. Multiple include values are delimited by\ncomma(,).\n\nFor example, \n/{resource_name}/13?include=baz\n/{resource_name}/13?include=baz,bot",
+            "description": "include query parameter to retrieve any particular or particular\ncombination of relationships. Multiple include values are delimited by\ncomma(,).\n\nFor example, \n     /{resource_name}/13?include=baz\n     /{resource_name}/13?include=baz,bot",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "fields",
-            "description": "fields query parameter to retrieve any particular or any particular\ncombination of attributes. Multiple fields values are delimited by comma(,).\n\nFor example \n/{resource_name}/29?fields=foo\n/{resource_name}/?fields=foo,bar",
+            "description": "fields query parameter to retrieve any particular or any particular\ncombination of attributes. Multiple fields values are delimited by comma(,).\n\nFor example \n     /{resource_name}/29?fields=foo\n     /{resource_name}/?fields=foo,bar",
             "in": "query",
             "required": false,
             "type": "string"
@@ -675,6 +675,45 @@
         ]
       }
     },
+    "/users/email/{email}": {
+      "get": {
+        "summary": "Gets the specified user by their email id",
+        "operationId": "GetUserByEmail",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/userUser"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "include",
+            "description": "include query parameter to retrieve any particular or particular\ncombination of relationships. Multiple include values are delimited by\ncomma(,).\n\nFor example,\n         /{resource_name}/13?include=baz\n         /{resource_name}/13?include=baz,bot",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "description": "fields query parameter to retrieve any particular or any particular\ncombination of attributes. Multiple fields values are delimited by comma(,).\n\nFor example,\n         /{resource_name}/29?fields=foo\n         /{resource_name}/?fields=foo,bar",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
     "/users/{id}": {
       "get": {
         "summary": "Gets the specified user",
@@ -697,14 +736,14 @@
           },
           {
             "name": "include",
-            "description": "include query parameter to retrieve any particular or particular\ncombination of relationships. Multiple include values are delimited by\ncomma(,).\n\nFor example, \n/{resource_name}/13?include=baz\n/{resource_name}/13?include=baz,bot",
+            "description": "include query parameter to retrieve any particular or particular\ncombination of relationships. Multiple include values are delimited by\ncomma(,).\n\nFor example, \n     /{resource_name}/13?include=baz\n     /{resource_name}/13?include=baz,bot",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "fields",
-            "description": "fields query parameter to retrieve any particular or any particular\ncombination of attributes. Multiple fields values are delimited by comma(,).\n\nFor example \n/{resource_name}/29?fields=foo\n/{resource_name}/?fields=foo,bar",
+            "description": "fields query parameter to retrieve any particular or any particular\ncombination of attributes. Multiple fields values are delimited by comma(,).\n\nFor example \n     /{resource_name}/29?fields=foo\n     /{resource_name}/?fields=foo,bar",
             "in": "query",
             "required": false,
             "type": "string"
@@ -1478,7 +1517,7 @@
           "$ref": "#/definitions/userUserAttributes"
         },
         "relationships": {
-          "$ref": "#/definitions/userNewUserRelationships"
+          "$ref": "#/definitions/userExistingUserRelationships"
         }
       }
     },
