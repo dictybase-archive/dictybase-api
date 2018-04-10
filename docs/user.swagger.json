@@ -967,6 +967,17 @@
       },
       "description": "Definition for resource identifier collection objects."
     },
+    "jsonapiExistResponse": {
+      "type": "object",
+      "properties": {
+        "exist": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "exist or non-existant"
+        }
+      },
+      "title": "ExistResponse wraps a boolean response"
+    },
     "jsonapiLinks": {
       "type": "object",
       "properties": {

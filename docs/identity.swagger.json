@@ -1,0 +1,281 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "identity.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/healthz": {
+      "get": {
+        "summary": "Basic health check that always return success",
+        "operationId": "Healthz",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/identities": {
+      "post": {
+        "summary": "Create a new identity",
+        "operationId": "CreateIdentity",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/identityIdentity"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/identityCreateIdentityReq"
+            }
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/identities/{id}": {
+      "get": {
+        "operationId": "GetIdentity",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/identityIdentity"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete an existing identity",
+        "operationId": "DeleteIdentity",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    },
+    "/identities/{provider}/{identifier}": {
+      "get": {
+        "summary": "Gets the specified identity",
+        "operationId": "GetIdentityFromProvider",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/identityIdentity"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "identifier",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IdentityService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "identityCreateIdentityReq": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/identityCreateIdentityReqData"
+        }
+      }
+    },
+    "identityCreateIdentityReqData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "resource name"
+        },
+        "attributes": {
+          "$ref": "#/definitions/identityNewIdentityAttributes"
+        }
+      }
+    },
+    "identityIdentity": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/identityIdentityData"
+        },
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        }
+      }
+    },
+    "identityIdentityAttributes": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "An unique identifier provided by the third party.\nGenerally it's an email id, however it could be something else specifically\nprovided by an provider."
+        },
+        "provider": {
+          "type": "string",
+          "description": "Name of the provider, for example, orcid, google, facebook etc."
+        },
+        "user_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "The id of the user to which this identity is connected.\nThis id could be used to fetch a complete user response from the user service"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Timestamp for creation and update"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "title": "Definition for various fields"
+    },
+    "identityIdentityData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "The resource name"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "Unique id"
+        },
+        "attributes": {
+          "$ref": "#/definitions/identityIdentityAttributes"
+        },
+        "links": {
+          "$ref": "#/definitions/jsonapiLinks"
+        }
+      }
+    },
+    "identityNewIdentityAttributes": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "An unique identifier provided by the third party.\nGenerally it's an email id, however it could be something else specifically\nprovided by an provider."
+        },
+        "provider": {
+          "type": "string",
+          "description": "Name of the provider, for example, orcid, google, facebook etc."
+        },
+        "user_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "The id of the user to which this identity is connected.\nThis id could be used to fetch a complete user response from the user service"
+        }
+      }
+    },
+    "jsonapiExistResponse": {
+      "type": "object",
+      "properties": {
+        "exist": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "exist or non-existant"
+        }
+      },
+      "title": "ExistResponse wraps a boolean response"
+    },
+    "jsonapiLinks": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "string",
+          "description": "A http link. It points to the resource itself."
+        },
+        "related": {
+          "type": "string",
+          "description": "A http link. It points to a related resource."
+        }
+      },
+      "description": "A container for http links."
+    },
+    "protobufEmpty": {
+      "type": "object",
+      "description": "service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "title": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:"
+    }
+  }
+}
