@@ -15,6 +15,32 @@
     "application/json"
   ],
   "paths": {
+    "/healthz": {
+      "get": {
+        "summary": "Basic health check that always return success",
+        "operationId": "Healthz",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
     "/permissions": {
       "get": {
         "summary": "List all permissions",
@@ -707,32 +733,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "UserService"
-        ]
-      }
-    },
-    "/users/healthz": {
-      "get": {
-        "summary": "Basic health check that always return success",
-        "operationId": "Healthz",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/protobufEmpty"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
           }
         ],
         "tags": [
