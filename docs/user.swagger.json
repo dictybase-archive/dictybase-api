@@ -382,10 +382,10 @@
         ]
       }
     },
-    "/roles/{id}/permissions/permissions": {
-      "post": {
-        "summary": "Create permission relationship with role",
-        "operationId": "CreatePermissionRelationship",
+    "/roles/{id}/relationships/permissions": {
+      "delete": {
+        "summary": "Delete existing permission relationship with role",
+        "operationId": "DeletePermissionRelationship",
         "responses": {
           "200": {
             "description": "",
@@ -414,12 +414,10 @@
         "tags": [
           "RoleService"
         ]
-      }
-    },
-    "/roles/{id}/relationships/permissions": {
-      "delete": {
-        "summary": "Delete existing permission relationship with role",
-        "operationId": "DeletePermissionRelationship",
+      },
+      "post": {
+        "summary": "Create permission relationship with role",
+        "operationId": "CreatePermissionRelationship",
         "responses": {
           "200": {
             "description": "",
