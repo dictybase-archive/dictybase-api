@@ -1,0 +1,177 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Accessing data for the downloads page",
+    "version": "1.0.0",
+    "title": "Downloads Page"
+  },
+  "schemes": ["https", "http"],
+  "paths": {
+    "/organisms": {
+      "get": {
+        "summary": "gets list of organisms",
+        "operationId": "GetOrganisms",
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "lists all organisms",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/{taxonID}": {
+      "get": {
+        "summary": "gets list of downloads for an organism",
+        "operationId": "GetDownloads",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "taxonID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "lists downloads for an organism",
+            "schema": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Organisms": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "organisms"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "example": "44689"
+        },
+        "attributes": {
+          "$ref": "#/definitions/OrganismDataAttributes"
+        },
+        "relationships": {
+          "$ref": "#/definitions/Relationships"
+        }
+      }
+    },
+    "OrganismDataAttributes": {
+      "type": "object",
+      "properties": {
+        "taxon_id": {
+          "type": "string",
+          "example": "44689"
+        },
+        "scientific_name": {
+          "type": "string",
+          "example": "Dictyostelium discoideum"
+        },
+        "citation": {
+          "$ref": "#/definitions/Citation"
+        }
+      }
+    },
+    "Citation": {
+      "type": "object",
+      "properties": {
+        "authors": {
+          "type": "string",
+          "example": "Eichinger L, Pachebat JA, Glockner G, Rajandream MA, Sucgang R, Berriman M, Song J, Olsen R, Szafranski K, Xu Q, Tunggal B, Kummerfeld S, Madera M, Konfortov BA, Rivero F, Bankier AT, Lehmann R, Hamlin N, Davies R, Gaudet P, Fey P, Pilcher K, Chen G, Saunders D, Sodergren E, Davis P, Kerhornou A, Nie X, Hall N, Anjard C, Hemphill L, Bason N, Farbrother P, Desany B, Just E, Morio T, Rost R, Churcher C, Cooper J, Haydock S, van Driessche N, Cronin A, Goodhead I, Muzny D, Mourier T, Pain A, Lu M, Harper D, Lindsay R, Hauser H, James K, Quiles M, Madan Babu M, Saito T, Buchrieser C, Wardroper A, Felder M, Thangavelu M, Johnson D, Knights A, Loulseged H, Mungall K, Oliver K, Price C, Quail MA, Urushihara H, Hernandez J, Rabbinowitsch E, Steffen D, Sanders M, Ma J, Kohara Y, Sharp S, Simmonds M, Spiegler S, Tivey A, Sugano S, White B, Walker D, Woodward J, Winckler T, Tanaka Y, Shaulsky G, Schleicher M, Weinstock G, Rosenthal A, Cox EC, Chisholm RL, Gibbs R, Loomis WF, Platzer M, Kay RR, Williams J, Dear PH, Noegel AA, Barrell B, Kuspa A. (2005)"
+        },
+        "title": {
+          "type": "string",
+          "example": "The genome of the social amoeba Dictyostelium discoideum."
+        },
+        "journal": {
+          "type": "string",
+          "example": "Nature 435(7038): 43-57."
+        },
+        "link": {
+          "type": "string",
+          "example": "https://www.ncbi.nlm.nih.gov/pubmed/?term=15875012"
+        }
+      }
+    },
+    "Relationships": {
+      "type": "object",
+      "properties": {
+        "downloads": {
+          "$ref": "#/definitions/RelationshipDownloads"
+        }
+      }
+    },
+    "RelationshipDownloads": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "$ref": "#/definitions/RelationshipDownloadsLinks"
+        }
+      }
+    },
+    "RelationshipDownloadsLinks": {
+      "type": "object",
+      "properties": {
+        "related": {
+          "type": "string",
+          "example": "https://raw.githubusercontent.com/dictyBase/migration-data/master/downloads/44689.staging.json"
+        }
+      }
+    },
+    "Downloads": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "downloads"
+        },
+        "id": {
+          "type": "string",
+          "example": "1"
+        },
+        "attributes": {
+          "$ref": "#/definitions/DownloadsDataAttributes"
+        }
+      }
+    },
+    "DownloadsDataAttributes": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Nuclear Genome Sequences"
+        },
+        "items": {
+          "$ref": "#/definitions/DownloadsItems"
+        }
+      }
+    },
+    "DownloadsItems": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/DownloadsAttributesItem"
+      }
+    },
+    "DownloadsAttributesItem": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Chromosomal (Supercontig)"
+        },
+        "url": {
+          "type": "string",
+          "example": "https://betastorage.dictybase.local/downloads/1054147/nuclear-seq-annotations/fasciculatum_supercontig.fasta.zip"
+        }
+      }
+    }
+  }
+}
