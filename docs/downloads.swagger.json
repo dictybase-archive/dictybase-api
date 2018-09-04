@@ -54,9 +54,6 @@
         "data": {
           "$ref": "#/definitions/OrganismsData"
         }
-      },
-      "example": {
-        "data": ""
       }
     },
     "OrganismsData": {
@@ -153,9 +150,6 @@
         "data": {
           "$ref": "#/definitions/DownloadsData"
         }
-      },
-      "example": {
-        "data": ""
       }
     },
     "DownloadsData": {
