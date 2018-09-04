@@ -16,7 +16,9 @@
         "responses": {
           "200": {
             "description": "lists all organisms",
-            "schema": {}
+            "schema": {
+                "$ref": "#/definitions/Organisms"
+            }
           }
         }
       }
@@ -37,7 +39,9 @@
         "responses": {
           "200": {
             "description": "lists downloads for an organism",
-            "schema": {}
+            "schema": {
+                "$ref": "#/definitions/Downloads"
+            }
           }
         }
       }
