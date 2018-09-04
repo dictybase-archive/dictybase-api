@@ -17,7 +17,7 @@
           "200": {
             "description": "lists all organisms",
             "schema": {
-                "$ref": "#/definitions/Organisms"
+              "$ref": "#/definitions/Organisms"
             }
           }
         }
@@ -40,7 +40,7 @@
           "200": {
             "description": "lists downloads for an organism",
             "schema": {
-                "$ref": "#/definitions/Downloads"
+              "$ref": "#/definitions/Downloads"
             }
           }
         }
@@ -49,6 +49,23 @@
   },
   "definitions": {
     "Organisms": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/OrganismsData"
+        }
+      },
+      "example": {
+        "data": ""
+      }
+    },
+    "OrganismsData": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/OrganismsDataArray"
+      }
+    },
+    "OrganismsDataArray": {
       "type": "object",
       "properties": {
         "type": {
@@ -131,6 +148,23 @@
       }
     },
     "Downloads": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/DownloadsData"
+        }
+      },
+      "example": {
+        "data": ""
+      }
+    },
+    "DownloadsData": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/DownloadsDataArray"
+      }
+    },
+    "DownloadsDataArray": {
       "type": "object",
       "properties": {
         "type": {
